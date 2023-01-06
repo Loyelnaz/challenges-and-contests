@@ -18,19 +18,26 @@ public class MaximumIceCreamBars {
         System.out.println(maxIceCream(costs, coins));
     }
 
+    /**
+     * Time Complexity - O(n*logn), since we are sorting the costs array
+     * Space Complexity - O(logn), variant of Quick Sort is used in Java for sorting,
+                          which takes about logn space
+     */
     public static int maxIceCream(int[] costs, int coins) {
+        // Store ice cream costs in increasing order
         Arrays.sort(costs);
-        int totalBars = 0;
-        int currentCoins = coins;
 
+        int iceCreamBars = 0;
+        int currentCoins = coins;
         for (int cost : costs) {
+            // Pick ice creams till we can
             if (cost > currentCoins) {
-                return totalBars;
+                return iceCreamBars;
             }
             currentCoins -= cost;
-            totalBars++;
+            iceCreamBars++;
         }
 
-        return totalBars;
+        return iceCreamBars;
     }
 }
